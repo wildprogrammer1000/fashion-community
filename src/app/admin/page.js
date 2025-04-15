@@ -1,16 +1,16 @@
-import { query } from '@/lib/supabase';
+import { query } from "@/lib/supabase";
 
 async function getDashboardStats() {
   const [magazines, reviews, users] = await Promise.all([
-    query('magazine.count'),
-    query('review.count'),
-    query('user.count')
+    query("magazine.count"),
+    query("review.count"),
+    query("user.count"),
   ]);
 
   return {
-    magazineCount: magazines.data[0].count,
-    reviewCount: reviews.data[0].count,
-    userCount: users.data[0].count
+    magazineCount: magazines.data[0],
+    reviewCount: reviews.data[0],
+    userCount: users.data[0],
   };
 }
 
@@ -37,11 +37,16 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="space-y-4">
-        <a href="/admin/editors" className="block p-4 bg-white rounded-lg shadow hover:bg-gray-50">
+        <a
+          href="/admin/editors"
+          className="block p-4 bg-white rounded-lg shadow hover:bg-gray-50"
+        >
           <h2 className="text-xl font-semibold">에디터 승인 관리</h2>
-          <p className="text-gray-600">대기 중인 에디터 신청을 확인하고 승인하세요.</p>
+          <p className="text-gray-600">
+            대기 중인 에디터 신청을 확인하고 승인하세요.
+          </p>
         </a>
       </div>
     </div>
   );
-} 
+}
